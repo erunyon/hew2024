@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>:not()</title>
+<link rel="stylesheet" href="style.css">
+<style>
+:any-link { color:red; }
+a:not([class]) { background-color: lightblue; }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-widely">:not()</h1>
+      <p class="can-i-use">Can I Use: 95%</p>
+    </header>
+    <div class="grid grid-2">
+      <div class="align-center">
+        <p>The <span class="term">:not()</span> pseudo-class represents elements that do not match a list of selectors. Since it prevents specific items from being selected, it is known as the negation pseudo-class.</p>
+        <blockquote>The specificity of the :not() pseudo-class is replaced by the specificity of the most specific selector in its comma-separated argument of selectors; providing the same specificity as if it had been written :not(:is(argument)).</blockquote>
+      </div>
+      <div>
+<code>
+<pre>
+:any-link { color:red; }
+a:not([class]) { background-color: lightblue; }
+
+&lt;a href="#" class="foo"&gt;Class&lt;/a&gt;
+&lt;a href="#"&gt;No class&lt;/a&gt;
+</pre>
+</code>
+<code>
+<a href="#" class="foo">Class</a><br>
+<a href="#">No class</a>
+</code>
+      </div>
+    </div>
+  </div><!-- .wrapper -->
+</body>
+</html>

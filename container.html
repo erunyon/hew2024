@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@container</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-newly">@container</h1>
+      <p class="can-i-use">Can I Use: 91%</p>
+    </header>
+
+    <p>The <span class="term">@container</span> CSS at-rule is a conditional group rule that applies styles to a containment context.</p>
+
+
+    <div class="grid grid-2">
+      <div class="align-center">
+<pre><code>
+&lt;div class="parent"&gt;
+  &lt;div class="child"&gt;
+    &lt;h2&gt;Child title&lt;/h2&gt;
+    &lt;p&gt;Child content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+      </div>
+      <div>
+<pre><code class="language-css">
+.parent {
+  container-type: inline-size;
+}
+@container (min-width: 700px) {
+  .child {
+    /* styles */
+  }
+}
+</code></pre>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="grid grid-2">
+      <div class="align-center">
+<pre><code>
+&lt;div class="parent"&gt;
+  &lt;div class="child"&gt;
+    &lt;h2&gt;Child title&lt;/h2&gt;
+    &lt;p&gt;Child content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+      </div>
+      <div>
+<pre><code class="language-css">
+.parent {
+  container: foo inline-size;
+}
+@container foo (min-width: 700px) {
+  .child {
+    /* styles */
+  }
+}
+</code></pre>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Cards -->
+    <style>
+    .card-parent { container-type: inline-size; }
+    .card {
+      display: flex;
+      flex-direction: column;
+      transition: all linear 0.2s;
+    }
+    .card-image { margin:0; }
+    .card-body { align-content: center;}
+    @container (width >= 700px) {
+      .card-image {
+        max-width:40cqi;
+      }
+      .card { flex-direction: row; }
+    }
+    </style>
+    <h2>A Card in Action</h2>
+    <div class="grid grid-2">
+      <div>
+<pre><code>
+&lt;div class="card-parent"&gt;
+  &lt;div class="card"&gt;
+    &lt;figure class="card-image"&gt;&lt;img src="" &hellip;&gt;&lt;/figure&gt;
+    &lt;div class="card-body"&gt;
+      &lt;h2&gt;&lt;a href="#"&gt;The villians&lt;/a&gt;&lt;/h2&gt;
+      &lt;p&gt;Prince Humperdink and Count Rugen being evil.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+      </div>
+      <div>
+<pre><code class="language-css">
+  .card-parent {
+    container-type: inline-size;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+  @container (width >= 700px) {
+    .card-image {
+      max-width:40cqi; /* same as 40cqw */
+    }
+    .card { flex-direction: row; }
+  }
+  </code></pre>
+      </div>
+
+    </div>
+
+    <div class="secondary responsive" style="width:400px;">
+
+      <div class="card-parent">
+        <div class="card">
+          <figure class="card-image"><img src="images/pb-humperdink.webp" width="1000" height="633" alt=""></figure>
+          <div class="card-body">
+            <h2><a href="#">The villians</a></h2>
+            <p>Prince Humperdink and Count Rugen being evil.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <!-- Multi-card -->
+    <style>
+    .cards {
+      .card { margin-bottom:1rem; }
+    }
+    .cards-multi { container-type: inline-size; }
+    @container (width >= 800px) {
+      .cards-inline {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    </style>
+    <p><label><input type="checkbox" onclick="toggle_columns()"> Columns</label></p>
+    <div class="secondary responsive cards cards-multi" style="width:400px;">
+      <ul class="nobullets" id="card-list">
+
+        <li class="card-parent">
+          <div class="card">
+            <figure class="card-image"><img src="images/pb-humperdink.webp" width="1000" height="633" alt=""></figure>
+            <div class="card-body">
+              <h2><a href="#">The villians</a></h2>
+              <p>Prince Humperdink and Count Rugen being evil.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="card-parent">
+          <div class="card">
+            <figure class="card-image"><img src="images/pb-inigo-2.webp" width="1000" height="633" alt=""></figure>
+            <div class="card-body">
+              <h2><a href="#">Inigo Montoya</a></h2>
+              <p>Unfortunately, there is no money in revenge.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="card-parent">
+          <div class="card">
+            <figure class="card-image"><img src="images/pb-buttercup.webp" width="1000" height="633" alt=""></figure>
+            <div class="card-body">
+              <h2><a href="#">The Princess</a></h2>
+              <p>Before she was a princess, she was once a
+                commoner like yourselves.</p>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <script>
+    function toggle_columns() {
+      var card_list = document.getElementById('card-list');
+      card_list.classList.toggle('cards-inline');
+    }
+    </script
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

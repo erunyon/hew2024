@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@media scripting</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.scripting { color:#eee; }
+@media (scripting: none) {
+  .script-none { color:red; font-weight:bold; }
+}
+@media (scripting: enabled) {
+  .script-enabled { color:red; font-weight:bold; }
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>@media scripting</h1>
+      <p class="can-i-use">Can I Use: 86%</p>
+    </header>
+    <div>
+      <p>The <span class="term">@scripting</span> feature can be used to test whether scripting (such as JavaScript) is available.</p>
+      <p>Options include: <span class="term">none</span>, <span class="term">initial-only</span>, and <span class="term">enabled</span>.</p>
+    </div>
+    <div class="grid grid-2">
+      <div>
+        <h2>Old Technique</h2>
+        <code>
+        &lt;html lang="en" class="no-js"&gt;<br><br>
+        document.documentElement.className = document.documentElement.className.replace(/(\s|^)no-js(\s|$)/, '$1' + 'js' + '$2');<br><br>
+        .no-js .a-thing {}<br>
+        .js .a-thing {}<br>
+        </code>
+      </div>
+      <div>
+        <h2>Modern Technique</h2>
+<pre><code class="language-css">
+@media (scripting: none) {
+  .script-none { color:red; }
+}
+@media (scripting: enabled) {
+  .script-enabled { color:red; }
+}
+</code></pre>
+<pre><code>
+&lt;p class="script-none"&gt;Javascript is disabled.&lt;/p&gt;
+&lt;p class="script-enabled"&gt;Javascript is enabled.&lt;/p&gt;
+</code></pre>
+        <p class="scripting script-none">Javascript is disabled.</p>
+        <p class="scripting script-enabled">Javascript is enabled.</p>
+      </div>
+    </div>
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

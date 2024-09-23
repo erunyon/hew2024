@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>text-wrap</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.balance { text-wrap: balance; }
+.pretty { text-wrap: pretty; }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>text-wrap</h1>
+    </header>
+    <div class="grid grid-2">
+      <div>
+        <h2>Balance</h2>
+        <p class="can-i-use">Can I Use: 84%</p>
+        <p>Text is wrapped in a way that best balances the number of characters on each line. Supports only a limited number of lines (six or less for Chromium and ten or less for Firefox).</p>
+        <h2>Pretty (Chrome only)</h2>
+        <p class="can-i-use">Can I Use: 70%</p>
+        <p>Results in the same behavior as wrap, except it uses a slower algorithm that favors better layout over speed. This is intended for body copy where good typography is favored over performance.</p>
+      </div>
+      <div class="align-center">
+<pre><code class="language-css">
+.balance {
+  text-wrap: balance;
+}
+
+.pretty {
+  text-wrap: pretty;
+}
+</code></pre>
+      </div>
+    </div>
+
+    <div class="secondary responsive">
+      <span class="tag">Default</span>
+      <h2 class="title">University of Notre Dame makes historic investment in affordability and access</h2>
+      <span class="tag">Balance</span>
+      <h2 class="title balance">University of Notre Dame makes historic investment in affordability and access</h2>
+      <span class="tag">Pretty</span>
+      <h2 class="title pretty">University of Notre Dame makes historic investment in affordability and access</h2>
+    </div>
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

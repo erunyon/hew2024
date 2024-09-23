@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dialog</title>
+<link rel="stylesheet" href="style.css">
+<style>
+dialog.animate-in[open] {
+  animation: open 1s forwards;
+}
+@keyframes open {
+  from { opacity: 0 }
+  to   { opacity: 1 }
+}
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter:blur(2px);
+}
+dialog.animate-in-out {
+  opacity: 0;
+  transition:
+    display 1s allow-discrete,
+    overlay 1s allow-discrete,
+    opacity 1s;
+
+  &[open] {
+    opacity: 1;
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-newly">dialog</h1>
+      <p class="can-i-use">Can I Use: 95%</p>
+    </header>
+    <div>
+      <p>The <span class="term">&lt;dialog&gt;</span> HTML element represents a modal or non-modal dialog box or other interactive component, such as a dismissible alert, inspector, or subwindow..</p>
+    </div>
+    <div class="">
+      <pre><code>
+&lt;dialog id="dialog-1"&gt;
+  &lt;h2&gt;This is my sweet modal&lt;/h2&gt;
+  &lt;p&gt;More info here.&lt;/p&gt;
+  &lt;form method="dialog"&gt;
+    &lt;button&gt;Close dialog&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/dialog&gt;
+
+&lt;button onClick="document.getElementById('dialog-1').showModal();" type="button"&gt;Open Dialog&lt;/button&gt;
+      </pre></code>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Non-Modal</h2>
+        <code>
+&lt;button onClick="document.getElementById('dialog-1').show();" type="button"&gt;Open non-modal Dialog&lt;/button&gt;
+        </code>
+      </div>
+      <div class="align-center">
+        <dialog id="dialog-1" class="text-center">
+          <h2>This is a non-modal dialog</h2>
+          <p>More info here.</p>
+          <form method="dialog">
+            <button class="btn btn-lg">Close Dialog</button>
+          </form>
+        </dialog>
+        <button onClick="document.getElementById('dialog-1').show();" type="button" class="btn btn-lg">Open non-modal Dialog</button>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Modal</h2>
+        <code>
+          &lt;button onClick="document.getElementById('dialog-2').showModal();" type="button"&gt;Open modal Dialog&lt;/button&gt;
+        </code>
+      </div>
+      <div class="align-center">
+        <dialog id="dialog-2" class="text-center">
+          <h2>This is a modal dialog</h2>
+          <p>More info here.</p>
+          <form method="dialog">
+            <button class="btn btn-lg">Close Dialog</button>
+          </form>
+        </dialog>
+        <button onClick="document.getElementById('dialog-2').showModal();" type="button" class="btn btn-lg">Open modal Dialog</button>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Animate-in modal dialog</h2>
+        <pre><code class="language-css">
+dialog[open] {
+  animation: open 1s forwards;
+}
+@keyframes open {
+  from { opacity: 0 }
+  to   { opacity: 1 }
+}</code></pre>
+      </div>
+      <div class="align-center">
+        <dialog class="animate-in text-center" id="dialog-3">
+          <h2>This is an animated modal dialog</h2>
+          <p>More info here.</p>
+          <form method="dialog">
+            <button class="btn btn-lg">Close Dialog</button>
+          </form>
+        </dialog>
+        <button onClick="document.getElementById('dialog-3').showModal();" type="button" class="btn btn-lg">Open animated Dialog</button>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Animate-in/out modal dialog</h2>
+        <pre><code class="language-css">
+dialog {
+  opacity: 0;
+  transition:
+    display 1s allow-discrete,
+    overlay 1s allow-discrete,
+    opacity 1s;
+
+  &[open] {
+    opacity: 1;
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}</code></pre>
+      </div>
+      <div class="align-center">
+        <dialog class="animate-in-out text-center" id="dialog-4">
+          <h2>This is an animated modal dialog</h2>
+          <p>More info here.</p>
+          <form method="dialog">
+            <button class="btn btn-lg">Close Dialog</button>
+          </form>
+        </dialog>
+        <button onClick="document.getElementById('dialog-4').showModal();" type="button" class="btn btn-lg">Open animated Dialog</button>
+      </div>
+    </div>
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

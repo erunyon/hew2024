@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>:has()</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.cards { display:flex; gap:var(--grid-gap);
+  figure { margin:0; }
+  figcaption { font-size:0.7rem; line-height:1.2em; }
+  figure:has(figcaption) {
+    padding:10px;
+    border-radius:10px;
+    background:#fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    img {
+      margin-bottom: 0.5rem;
+    }
+  }
+  img { border-radius:10px; }
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-newly">:has() aka &ldquo;the parent selector&rdquo;</h1>
+      <p class="can-i-use">Can I Use: 92%</p>
+    </header>
+    <div class="grid grid-2">
+      <p>The <span class="term">:has()</span> pseudo-class represents an element if any of the relative selectors that are passed as an argument match at least one element when anchored against this element.</p>
+      <blockquote>The :has() pseudo-class takes on the specificity of the most specific selector in its arguments the same way as :is() and :not() do.</blockquote>
+    </div>
+
+    <!-- Image with figcaption -->
+    <div class="secondary grid grid-2">
+      <div>
+<pre><code class="language-css">
+figure:has(figcaption) {
+  padding:10px;
+  border-radius:10px;
+  background:#fff;
+  img {
+    margin-bottom: 0.5rem;
+  }
+}
+</code></pre>
+      </div>
+
+      <div>
+        <div class="cards">
+          <figure>
+            <img src="images/pb-vizzini.webp" alt="" width="1000" height="663">
+          </figure>
+          <figure>
+            <img src="images/pb-fire-swamp.webp" alt="" width="1000" height="663">
+            <figcaption>Westley and Buttercup escape the Fire Swamp</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Visible Elements -->
+    <style>
+    .hidden { display:none; }
+    .filter-group:not(:has(li.filter-record:not(.hidden))) { display:none; }
+    </style>
+    <h2>Visible Elements</h2>
+    <div class="grid grid-2">
+      <div>
+<pre><code>
+&lt;div class="filter-group"&gt;
+  &lt;h3&gt;Countries&lt;/h3&gt;
+  &lt;p&gt;The known countries of the world.&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li class="filter-record"&gt;Florien&lt;/li&gt;
+    &lt;li class="filter-record"&gt;Gilder&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">
+.filter-group:not(:has(li.filter-record:not(.hidden))) {
+  display:none;
+}
+</code></pre>
+      </div>
+      <div class="align-center">
+        <p><label><input type="checkbox" onclick="toggleitems()"> Toggle list items</label></p>
+        <div class="filter-group">
+          <h3>Countries</h3>
+          <p></p>
+          <ul>
+            <li class="filter-record">Florin</li>
+            <li class="filter-record">Guilder</li>
+            <li class="filter-record">Italy</li>
+            <li class="filter-record">Spain</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script>
+    function toggleitems(){
+      document.querySelectorAll('.filter-record').forEach(li => {
+        li.classList.toggle('hidden');
+      });
+    }
+    </script>
+
+    <hr>
+
+    <!-- Child Count -->
+    <style>
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:0.5rem;
+  margin:0;
+  padding:0;
+  list-style: none;
+  li {
+    margin:0;
+    padding:0;
+  }
+  li:nth-child(1),
+  li:nth-child(4) {
+    grid-row: span 2;
+    grid-column: span 2;
+  }
+  &:has(> :nth-child(7)) {
+    li:nth-child(1){
+      grid-row: span 3;
+    }
+    li:nth-child(4){
+      grid-column: span 1; grid-row: span 1;
+    }
+  }
+  &:has(> :nth-child(8)) {
+    li:nth-child(1){
+      grid-row: span 2;
+    }
+    li:nth-child(4){
+      grid-column: span 2;
+    }
+  }
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+    </style>
+    <h2>Child Count</h2>
+    <div class="grid grid-2">
+      <div class="align-center">
+<pre><code class="language-css">
+li:nth-child(1),
+li:nth-child(4) {
+  grid-row: span 2;
+  grid-column: span 2;
+}
+</code></pre>
+
+<pre><code class="language-css">
+.gallery {
+  &:has(> :nth-child(7)) {
+    li:nth-child(1){
+      grid-row: span 3;
+    }
+    li:nth-child(4){
+      grid-column: span 1; grid-row: span 1;
+    }
+  }
+}
+</code></pre>
+
+<pre><code class="language-css">
+  .gallery {
+    &:has(> :nth-child(8)) {
+      li:nth-child(1){
+        grid-row: span 2;
+      }
+      li:nth-child(4){
+        grid-column: span 2;
+      }
+    }
+  }
+</code></pre>
+
+      </div>
+      <div>
+        <p>
+          <button class="btn" onclick="add()">Add image</button>
+          <button class="btn" onclick="remove()">Remove image</button>
+<ul class="gallery" id="gallery">
+  <li><img src="images/pb-buttercup.webp" width="1000" height="662" alt=""></li>
+  <li><img src="images/pb-vizzini.webp" width="1000" height="662" alt=""></li>
+  <li><img src="images/pb-fire-swamp.webp" width="1000" height="662" alt=""></li>
+  <li><img src="images/pb-westly.webp" width="1000" height="662" alt=""></li>
+  <li><img src="images/pb-inigo-2.webp" width="1000" height="662" alt=""></li>
+  <li><img src="images/pb-wb.webp" width="1000" height="662" alt=""></li>
+</ul>
+      </div>
+    </div>
+    <script>
+    let gallery = document.getElementById('gallery');
+    let image_array = Array('pb-inigo','pb-humperdink');
+
+    function add(){
+      let li = document.createElement('li');
+      let img = document.createElement('img');
+      img.src = 'images/' + image_array[Math.floor(Math.random() * image_array.length)] + '.webp';
+      img.width = 1000;
+      img.height = 662;
+      li.appendChild(img);
+      gallery.appendChild(li);
+    }
+    function remove(){
+      let items = gallery.querySelectorAll('li');
+      items[items.length - 1].remove();
+    }
+    </script>
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

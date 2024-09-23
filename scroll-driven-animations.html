@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scroll-driven Animations</title>
+<link rel="stylesheet" href="style.css">
+<style>
+@keyframes grow-progress {
+	from { transform: scaleX(0); }
+	to { transform: scaleX(1); }
+}
+#scroll {
+  animation: grow-progress auto linear;
+  animation-timeline: scroll();
+}
+.progress {
+  position:fixed;
+  left:0;
+  top:0;
+  z-index:10;
+  width:100%;
+  height:5px;
+  transform-origin:left;
+  background-color:#ea8600;
+}
+.content-centered { margin-block:4rem; }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div id="scroll" class="progress"></div>
+    <header>
+      <h1 class="wps wps-limited">Scroll-driven Animations (Chrome only)</h1>
+      <p class="can-i-use">Can I Use: 70%</p>
+    </header>
+    <div>
+      <p>The <span class="term">CSS scroll-driven animations</span> provides functionality that builds on top of the CSS animations module and Web Animations API. It allows you to animate property values based on a progression along a scroll-based timeline instead of the default time-based document timeline.</p>
+      <p>The two types of scroll-based timelines:</p>
+      <ul>
+        <li><span class="term">scroll()</span>: Progress by scrolling a scrollable element (scroller) from top to bottom (or left to right) and back again. The position in the scroll range is converted into a percentage of progress — 0% at the start and 100% at the end.</li>
+        <li><span class="term">view()</span>: Progress is based on the change in visibility of an element (known as the subject) inside a scroller. The visibility of the subject inside the scroller is tracked as a percentage of progress — by default, the timeline is at 0% when the subject is first visible at one edge of the scroller, and 100% when it reaches the opposite edge.</li>
+      </ul>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div class="align-center">
+        <h2>scroll() usage</h2>
+<pre><code>&lt;div id="scroll" class="progress"&gt;&lt;/div&gt;</code></pre>
+      </div>
+      <div class="align-center">
+<pre><code class="language-css">
+@keyframes grow-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+#scroll {
+  animation: grow-progress auto linear;
+  animation-timeline: scroll();
+}
+.progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 5px;
+  transform-origin: left;
+  background-color: #ea8600;
+}
+</code></pre>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div class="align-center">
+        <h2>view() usage</h2>
+<pre><code>
+&lt;figure class="fade-in"&gt;
+  &lt;img src="images/pb-inconceivable.webp"
+      alt="" width="1920" height="1084"&gt;
+  &lt;figcaption&gt;Inconceivable!&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+      </div>
+      <div class="align-center">
+        <p><strong>Notice!</strong> You should always wrap animations in the following:</p>
+<pre><code class="language-css">
+@media (prefers-reduced-motion: no-preference){
+  /* Your animations here */
+}</code></pre>
+
+<style>
+/* Fade in images */
+@media (prefers-reduced-motion: no-preference){
+  .fade-in {
+    animation: fade-in linear both;
+    animation-timeline: view();
+    animation-range: entry 25% cover 50%;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      scale:1.06;
+    }
+    to {
+      opacity: 1;
+      scale:1;
+    }
+  }
+}
+</style>
+<pre><code class="language-css">
+.fade-in {
+  view-timeline-axis: block;
+  animation: fade-in linear both;
+  animation-timeline: view();
+  animation-range: entry 25% cover 50%;
+  /*
+  Equivalent to
+  animation-range-start: entry 25%;
+  animation-range-end: cover 50%;
+  */
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    scale:1.06;
+  }
+  to {
+    opacity: 1;
+    scale:1;
+  }
+}
+</code></pre>
+      </div>
+    </div>
+
+    <div class="content-centered">
+      <h2>Image Fade-in</h2>
+      <p><strong>VIZZINI:</strong> Hurry up. Move the thing! Um ... that other thing. Move it! We're safe -- only FEZZIK is strong enough to go up our way -- he'll have to sail around for hours 'til he finds a harbor.</p>
+      <p><strong>INIGO:</strong> He's climbing the rope. And he's gaining on us.</p>
+      <p><strong>VIZZINI:</strong> Inconceivable!</p>
+      <p><strong>VIZZINI:</strong> Faster!</p>
+      <p><strong>FEZZIK:</strong> I thought I was going faster.</p>
+      <p><strong>VIZZINI:</strong> You were supposed to be this colossus. You were this great, legendary thing. And yet he gains.</p>
+      <p><strong>FEZZIK:</strong> Well, I'm carrying three people. And he's got only himself.</p>
+      <p><strong>VIZZINI:</strong> I do not accept excuses. I'm just going to have to find myself a new giant, that's all.</p>
+      <p><strong>FEZZIK:</strong> Don't say that, Vizzini. Please.</p>
+      <p><strong>VIZZINI:</strong> Did I make it clear that your job is at stake?</p>
+      <p><strong>FEZZIK:</strong> He has very good arms.</p>
+      <p><strong>VIZZINI:</strong> He didn't fall? Inconceivable!</p>
+      <figure class="fade-in">
+        <img src="images/pb-inconceivable.webp" alt="" width="1920" height="1084">
+        <figcaption>Inconceivable!</figcaption>
+      </figure>
+      <p><strong>INIGO:</strong> You keep using that word -- I do not think it means what you think it means. My God! He's climbing.</p>
+      <p><strong>VIZZINI:</strong> Whoever he is, he's obviously seen us with the Princess, and must therefore die. You, carry her. We'll head straight for the Guilder frontier. Catch up when he's dead. If he falls, fine. If not, the sword.</p>
+      <p><strong>INIGO:</strong> I want to duel him left-handed.</p>
+      <p><strong>VIZZINI:</strong> You know what a hurry we're in.</p>
+      <p><strong>INIGO:</strong> Well, it's the only way I can be satisfied. If I use my right -- tch -- over too quickly.</p>
+      <p><strong>VIZZINI:</strong> Oh, have it your way.</p>
+      <p><strong>FEZZIK:</strong> You be careful. People in masks cannot be trusted.</p>
+      <p><strong>VIZZINI:</strong> I'm waiting!</p>
+      <p><strong>INIGO:</strong> Hello there.</p>
+      <p><strong>MAN IN BLACK:</strong> Look, I don't mean to be rude, but this is not as easy as it looks. So I'd appreciate it if you wouldn't distract me.</p>
+      <p><strong>INIGO:</strong> Sorry.</p>
+      <p><strong>MAN IN BLACK:</strong> Thank you.</p>
+      <figure class="fade-in">
+        <img src="images/pb-climbing.webp" alt="" width="1920" height="1037">
+        <figcaption>The man in black!</figcaption>
+      </figure>
+      <p><strong>INIGO:</strong> I do not suppose you could speed things up?</p>
+      <p><strong>MAN IN BLACK:</strong> If you're in such a hurry, you could lower a rope, or a tree branch, or find something useful to do.</p>
+      <p><strong>INIGO:</strong> I could do that. In fact, I've got some rope up here. But I do not think that you will accept my help, since I am only waiting around to kill you.</p>
+      <p><strong>MAN IN BLACK:</strong> That does put a damper on our relationship.</p>
+      <p><strong>INIGO:</strong> But I promise I will not kill you until you reach the top.</p>
+      <p><strong>MAN IN BLACK:</strong> That's very comforting. But I'm afraid you'll just have to wait.</p>
+      <p><strong>INIGO:</strong> I hate waiting. I could give you my word as a Spaniard.</p>
+      <p><strong>MAN IN BLACK:</strong> No good. I've known too many Spaniards.</p>
+      <p><strong>INIGO:</strong> You don't know any way you'll trust me?</p>
+      <p><strong>MAN IN BLACK:</strong> Nothing comes to mind.</p>
+      <p><strong>INIGO:</strong> I swear on the soul of my father, Domingo Montoya, you will reach the top alive.</p>
+      <p><strong>MAN IN BLACK:</strong> Throw me the rope.</p>
+    </div>
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cascade Layers</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-newly">Cascade Layers</h1>
+      <p class="can-i-use">Can I Use: 94%</p>
+    </header>
+    <div>
+      <p>CSS <span class="term">Cascade Layers</span> provide a way to organize CSS and provide an easier way to override earlier styles.</p>
+    </div>
+
+    <hr>
+
+    <style>
+    .demo {
+      p { color:#333; }
+      .indigo { color:indigo; }
+      p { color:orange; }
+    }
+    </style>
+    <h2>Demo 1: Standard Cascade</h2>
+    <div class="grid grid-2 demo">
+      <div>
+        <code>
+          &lt;p class="indigo"&gt;&lt;strong&gt;INIGO:&lt;/strong&gt; Hello there.&lt;/p&gt;<br><br>
+          &lt;p&gt;&lt;strong&gt;MAN IN BLACK:&lt;/strong&gt; &hellip;&lt;/p&gt;<br><br>
+          &lt;p class="indigo"&gt;&lt;strong&gt;INIGO:&lt;/strong&gt; Sorry.&lt;/p&gt;<br><br>
+          &lt;p&gt;&lt;strong&gt;MAN IN BLACK:&lt;/strong&gt; Thank you.&lt;/p&gt;
+        </code>
+<pre><code class="language-css">
+p { color:#333; }
+.indigo { color:indigo; }
+p { color:orange; }
+</code></pre>
+      </div>
+      <div class="align-center">
+        <p class="indigo"><strong>INIGO:</strong> Hello there.</p>
+        <p><strong>MAN IN BLACK:</strong> Look, I don't mean to be rude, but this is not as easy as it looks. So I'd appreciate it if you wouldn't distract me.</p>
+        <p class="indigo"><strong>INIGO:</strong> Sorry.</p>
+        <p><strong>MAN IN BLACK:</strong> Thank you.</p>
+      </div>
+    </div>
+
+    <p><a class="btn btn-more" href="cascade-layers-2.html">Demo 2: Add some layers</a></p>
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>inset</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.secondary { position:relative; }
+.inset-box { position:absolute; inset:auto 1rem 1rem auto; padding:0 1rem; border:1px solid red; }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>inset</h1>
+      <p class="can-i-use">Can I Use: 93%</p>
+    </header>
+    <p>The <span class="term">inset</span> CSS property is a shorthand that corresponds to the top, right, bottom, and/or left properties. It has the same multi-value syntax of the margin shorthand.</p>
+    <div class="grid grid-2">
+      <div>
+        <h2>Old</h2>
+        <pre><code class="language-css">
+.positioned {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  bottom: 30px;
+  left: 40px;
+}</code></pre>
+      </div>
+      <div>
+        <h2>New</h2>
+        <pre><code class="language-css">
+.positioned {
+  position: absolute;
+  inset: 10px 20px 30px 40px;
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <pre><code class="language-css">
+.inset-box {
+  position:absolute;
+  inset:auto 1rem 1rem auto;
+  border:1px solid red;
+}</code></pre>
+      </div>
+      <div>
+        <div class="wrapper">
+          <div class="inset-box">inset box</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- .wrapper -->
+  <script src="javascript/highlight.min.js"></script>
+</body>
+</html>

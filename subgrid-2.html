@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subgrid Demo</title>
+<link rel="stylesheet" href="style.css">
+<style>
+:root {
+  --gutter-width: 5vw;
+}
+.container {
+  display: grid;
+  grid-template-rows: [header-start] auto [header-end main-start] minmax(auto, 1fr) [main-end footer-start] auto [footer-end];
+  grid-template-columns: [screen-start] var(--gutter-width) [content-start] repeat(6, 1fr) [content-end] var(--gutter-width) [screen-end];
+  height: 100vh;
+}
+header {
+  display:grid;
+  grid-column: screen;
+  grid-template-columns:subgrid;
+  padding-block:2rem;
+  background-color: #9be6b0;
+  h1 {
+    grid-column:content;
+    margin:0;
+  }
+}
+main {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-row:main;
+  grid-column:content;
+  padding-block:2rem;
+}
+footer {
+  display:grid;
+  grid-row:footer;
+  grid-column:screen;
+  grid-template-columns:subgrid;
+  padding-block:1rem;
+  background:#dadada;
+  .copyright {
+    grid-column:2/5;
+    align-content:center;
+    margin:0;
+  }
+  .social {
+    grid-column:7/8;
+    margin:0;
+  }
+}
+.intro { grid-column:content; }
+.courses {
+  grid-column:content;
+  display:grid;
+  grid-template-columns:subgrid;
+  h2 { grid-column:content; }
+
+  @media(width > 768px){
+    .course-grid {
+      display:grid;
+      grid-template-columns:subgrid;
+      grid-column:content;
+      gap:1rem;
+    }
+  }
+
+  .course {
+    grid-column:span 2;
+    grid-row:span 3;
+    display:grid;
+    gap:0;
+    grid-template-rows: subgrid;
+    padding:1rem;
+    border:1px solid #dadada;
+    border-radius:0.5rem;
+  }
+  .more { margin:0; }
+}
+.callout {
+  grid-column:content;
+  margin-block:2rem;
+  padding:1rem;
+  text-align:center;
+  background-color:#abd9f0;
+  h2 { margin:0; }
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>CSS University</h1>
+    </header>
+    <main>
+      <section class="intro">
+        <h2>We're glad you're here!</h2>
+        <p>CSS University is a place where you can learn about the latest and greatest in CSS. We offer a variety of courses that will help you become a CSS master in no time.</p>
+      </section>
+
+      <section class="courses">
+        <h2>Our Courses</h2>
+        <div class="course-grid">
+          <div class="course">
+            <h3>Introduction to CSS</h3>
+            <p>This course will teach you the basics of CSS, including how to style text, create layouts, and use animations.</p>
+            <p class="more"><a class="btn btn-more" href="#">Intro details</a></p>
+          </div>
+          <div class="course">
+            <h3>Advanced CSS Techniques</h3>
+            <p>In this course, you'll learn advanced CSS techniques, such as using grid and flexbox, creating custom animations, and optimizing your code for performance.</p>
+            <p class="more"><a class="btn btn-more" href="#">Advanced details</a></p>
+          </div>
+          <div class="course">
+            <h3>Responsive Web Design</h3>
+            <p>This course will teach you how to create responsive websites that look great on any device, from desktop to mobile.</p>
+            <p class="more"><a class="btn btn-more" href="#">Learn RWD</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="callout">
+        <h2>Ready to get started?</h2>
+        <p>Sign up for one of our courses today and take your CSS skills to the next level!</p>
+        <p><a class="btn btn-more" href="./index.html">Sign up now</a></p>
+      </section>
+
+    </main>
+    <footer>
+      <p class="copyright">&copy; 2021 CSS University. All rights reserved.</p>
+      <ul class="social">
+        <li><a href="">Twitter</a></li>
+        <li><a href="">Facebook</a></li>
+        <li><a href="">Instagram</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+</html>

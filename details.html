@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>details "name" attribute</title>
+<link rel="stylesheet" href="style.css">
+<style>
+:root {
+  --anim-duration:325ms;
+  --anim-duration-fast:125ms;
+  --anim-duration-slow:500ms;
+  --anim-ease:ease-in-out;
+}
+details { margin-bottom:1rem; padding-inline:2rem; }
+summary { border:thin dotted transparent; font-size:1.2rem; font-weight:700; margin-left:-2rem; outline:none; padding:.5rem 0 .5rem 2rem; text-indent:-2rem; transition:all 125ms ease-in-out; transition:all var(--anim-duration-fast) var(--anim-ease); }
+summary:focus { border:thin dotted; }
+summary:hover { color:#1c4f8f; cursor:pointer; }
+summary::-webkit-details-marker { display:none; }
+summary:before { content:"\002B"; display:inline-block; text-align:center; text-indent:0; width:2rem; }
+details[open] summary:before { content:"\2212"; }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-limited">details "name" attribute</h1>
+      <p class="can-i-use">Can I Use: 83%</p>
+    </header>
+    <div class="grid grid-2">
+      <div class="align-center">
+        <p>The details <span class="term">name</span> connect multiple `details` elements together.</p>
+      </div>
+      <div>
+        <pre><code>
+&lt;details name="foo"&gt;
+  &lt;summary&gt;First Details&lt;/summary&gt;
+  &lt;p&gt;Summary text.&lt;/p&gt;
+&lt;/details&gt;
+&lt;details name="foo"&gt;
+  &lt;summary&gt;Second Details&lt;/summary&gt;
+  &lt;p&gt;Summary text.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+      </div>
+    </div><!-- .wrapper -->
+
+    <section class="secondary">
+      <h2>No Name</h2>
+      <details>
+        <summary>First Details</summary>
+        <p>Eaque laudantium magni sit expedita sed adipisci dolores ipsam non non quasi iste.</p>
+      </details>
+      <details>
+        <summary>Second Details</summary>
+        <p>Tempore beatae reprehenderit omnis non atque. Dolor labore non fugiat dolorem cupiditate aspernatur sequi delectus ex velit et. Magnam accusantium neque accusamus id animi ut odit maiores vitae tempore tempora. Minima velit quas omnis.</p>
+      </details>
+      <details>
+        <summary>Third Details</summary>
+        <p>Delectus ex velit et. Magnam accusantium neque accusamus id animi ut odit maiores vitae tempore tempora. Minima velit quas omnis.</p>
+      </details>
+    </section>
+
+    <div class="secondary">
+      <h2>Named</h2>
+      <details name="foo">
+        <summary>First Details</summary>
+        <p>Eaque laudantium magni sit expedita sed adipisci dolores ipsam non non quasi iste.</p>
+      </details>
+      <details name="foo">
+        <summary>Second Details</summary>
+        <p>Tempore beatae reprehenderit omnis non atque. Dolor labore non fugiat dolorem cupiditate aspernatur sequi delectus ex velit et. Magnam accusantium neque accusamus id animi ut odit maiores vitae tempore tempora. Minima velit quas omnis.</p>
+      </details>
+      <details name="foo">
+        <summary>Third Details</summary>
+        <p>Delectus ex velit et. Magnam accusantium neque accusamus id animi ut odit maiores vitae tempore tempora. Minima velit quas omnis.</p>
+      </details>
+    </div>
+
+  </div>
+  <script src="javascript/highlight.min.js"></script>
+</body>
+</html>

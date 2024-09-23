@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@view-transition</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.balance { text-wrap: balance; }
+.pretty { text-wrap: pretty; }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header style="view-transition-name:heading"><h1>@view-transition (Chrome only)</h1></header>
+    <div class="grid grid-2">
+      <div class="align-center">
+        <p>The <span class="term">view-transition()</span> CSS at-rule is used to opt in the current and destination documents to undergo a view transition, in the case of a cross-document navigation.</p>
+      </div>
+      <div>
+<pre><code class="language-css">
+@view-transition { navigation:auto; }
+
+@media not (prefers-reduced-motion: reduce) {
+  h1 { view-transition-name: article-heading; }
+
+  .news-listing-1234 { view-transition-name: news-title }
+  .news-detail-1234 { view-transition-name: news-title }
+}
+</code></pre>
+      </div>
+    </div>
+
+    <hr>
+
+    <div>
+      <h2>On this site</h2>
+<pre><code class="language-css">
+@view-transition { navigation:auto; }
+
+@media not (prefers-reduced-motion: reduce) {
+  h1 { view-transition-name:article-heading; }
+}
+</code></pre>
+    </div>
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

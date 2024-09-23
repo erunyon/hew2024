@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subgrid</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.container { display:grid; gap:1rem; grid-template-columns:repeat(3, 1fr); padding:1rem; font-size:0.8rem; line-height:1rem; border:1px solid black; }
+.block { border:1px solid #dadada; border-radius:0.5rem; overflow:clip;
+  .header { padding:1rem; background-color:#95deaa;
+    p {  font-size:0.9em; text-transform:uppercase; }
+  }
+  div { padding:1rem; }
+  p { margin:0; }
+  footer { padding:1rem; font-size:0.9em; background-color:#e1e1e1; }
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <h1 class="wps wps-newly">Subgrid</h1>
+      <p class="can-i-use">Can I Use: 89%</p>
+    </div>
+    <div>
+      <p>CSS <span class="term">Subgrid</span> allows child elements to inherit the grid layout from their parent.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="align-center">
+<pre><code class="language-css">
+.container {
+  display:grid;
+  gap:1rem;
+  grid-template-columns:repeat(3, 1fr);
+}
+</code></pre>
+      </div>
+      <div class="demo1">
+        <div class="container">
+
+          <div class="block">
+            <div class="header">
+              <h3>Vizzini</h3>
+              <p>Sicilian genius</p>
+            </div>
+            <div>Vizzini is the brains behind the trio hired by Humperdinck to kidnap and murder Buttercup.</div>
+            <footer><strong>Qualities:</strong> Smug and ruthless. Very short on charm.</footer>
+          </div>
+
+          <div class="block">
+            <div class="header">
+              <h3>Inigo Montoya</h3>
+              <p>Spanish swordsman</p>
+            </div>
+            <div>Inigo has spent his life learning the sword in order to avenge his father's death at the hands of Count Rugen.</div>
+            <footer><strong>Qualities:</strong> Friendly and loyal</footer>
+          </div>
+
+          <div class="block">
+            <div class="header">
+              <h3>Fezzik</h3>
+              <p>Turkish brawler</p>
+            </div>
+            <div>The timid, large-hearted and obedient giant loves rhymes and his friend Inigo, and he is excellent at lifting heavy things.</div>
+            <footer><strong>Qualities:</strong> Goodhearted. Great gift for rhyme.</footer>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <style>
+    .demo2 {
+      .block {
+        display:grid;
+        grid-template-rows:subgrid;
+        grid-row:span 3;
+      }
+    }
+    </style>
+    <div class="grid grid-2">
+      <div class="align-center">
+<pre><code class="language-css">
+.block {
+  display:grid;
+  grid-row:span 3;
+  grid-template-rows:subgrid;
+}
+</code></pre>
+      </div>
+      <div class="demo2">
+        <div class="container">
+
+          <div class="block">
+            <div class="header">
+              <h3>Vizzini</h3>
+              <p>Sicilian genius</p>
+            </div>
+            <div>Vizzini is the brains behind the trio hired by Humperdinck to kidnap and murder Buttercup.</div>
+            <footer><strong>Qualities:</strong> Smug and ruthless. Very short on charm.</footer>
+          </div>
+
+          <div class="block">
+            <div class="header">
+              <h3>Inigo Montoya</h3>
+              <p>Spanish swordsman</p>
+            </div>
+            <div>Inigo has spent his life learning the sword in order to avenge his father's death at the hands of Count Rugen.</div>
+            <footer><strong>Qualities:</strong> Friendly and loyal</footer>
+          </div>
+
+          <div class="block">
+            <div class="header">
+              <h3>Fezzik</h3>
+              <p>Turkish brawler</p>
+            </div>
+            <div>The timid, large-hearted and obedient giant loves rhymes and his friend Inigo, and he is excellent at lifting heavy things.</div>
+            <footer><strong>Qualities:</strong> Goodhearted. Great gift for rhyme.</footer>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <p><a class="btn btn-more" href="subgrid-2.html">Subgrid Demo</a></p>
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

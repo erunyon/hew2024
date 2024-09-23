@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>display: contents</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.oscars {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  h2, ul, li {
+    margin: 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    align-content: center;
+  }
+  h2 { background-color: #88d39d; }
+  ul {
+    outline: 2px solid #31515e;
+    list-style: none;
+    background-color: #f95d9b;
+    /* display: contents; */
+  }
+  li { background-color: #77c6e6;}
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>display: contents</h1>
+      <p class="can-i-use">Can I Use: 94%</p>
+    </header>
+    <div>
+      <p>CSS <span class="term">display: contents</span> causes an element's children to appear as if they were direct children of the element's parent, ignoring the element itself.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div>
+<pre><code>
+&lt;div class="oscars"&gt;
+  &lt;h2&gt;Best Picture&lt;/h2&gt;
+  &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;The Last Emperor&lt;/em&gt; (Winner)&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;Broadcast News&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;Fatal Attraction&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;Hope and Glory&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;Moonstruck&lt;/em&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">
+.oscars {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+</code></pre>
+      </div>
+      <div class="demo">
+        <h1>1988 Oscar Nominations (60th Academy Awards)</h1>
+        <div class="oscars">
+          <h2>Best Picture</h2>
+          <ul>
+              <li><em>The Last Emperor</em> (Winner)</li>
+              <li><em>Broadcast News</em></li>
+              <li><em>Fatal Attraction</em></li>
+              <li><em>Hope and Glory</em></li>
+              <li><em>Moonstruck</em></li>
+          </ul>
+
+          <h2>Best Director</h2>
+          <ul>
+              <li>Bernardo Bertolucci – <em>The Last Emperor</em> (Winner)</li>
+              <li>Adrian Lyne – <em>Fatal Attraction</em></li>
+              <li>John Boorman – <em>Hope and Glory</em></li>
+              <li>Norman Jewison – <em>Moonstruck</em></li>
+              <li>Lasse Hallström – <em>My Life as a Dog</em></li>
+          </ul>
+
+          <h2>Best Actor</h2>
+          <ul>
+              <li>Michael Douglas – <em>Wall Street</em> (Winner)</li>
+              <li>William Hurt – <em>Broadcast News</em></li>
+              <li>Marcello Mastroianni – <em>Dark Eyes</em></li>
+              <li>Jack Nicholson – <em>Ironweed</em></li>
+              <li>Robin Williams – <em>Good Morning, Vietnam</em></li>
+          </ul>
+
+          <h2>Best Actress</h2>
+          <ul>
+              <li>Cher – <em>Moonstruck</em> (Winner)</li>
+              <li>Glenn Close – <em>Fatal Attraction</em></li>
+              <li>Holly Hunter – <em>Broadcast News</em></li>
+              <li>Sally Kirkland – <em>Anna</em></li>
+              <li>Meryl Streep – <em>Ironweed</em></li>
+          </ul>
+
+          <h2>Best Adapted Screenplay</h2>
+          <ul>
+              <li><em>The Last Emperor</em> – Mark Peploe and Bernardo Bertolucci (Winner)</li>
+              <li><em>The Accidental Tourist</em> – Frank Galati and Lawrence Kasdan</li>
+              <li><em>Full Metal Jacket</em> – Stanley Kubrick, Michael Herr, and Gustav Hasford</li>
+              <li><em>My Life as a Dog</em> – Lasse Hallström, Reidar Jönsson, Brasse Brännström, and Per Berglund</li>
+              <li><em>The Princess Bride</em> – William Goldman</li>
+          </ul>
+
+          <h2>Best Original Song</h2>
+          <ul>
+              <li>"I've Had the Time of My Life" from <em>Dirty Dancing</em> – Music by Franke Previte, John DeNicola, and Donald Markowitz; Lyrics by Franke Previte (Winner)</li>
+              <li>"Cry Freedom" from <em>Cry Freedom</em> – Music and Lyrics by George Fenton and Jonas Gwangwa</li>
+              <li>"Nothing's Gonna Stop Us Now" from <em>Mannequin</em> – Music by Albert Hammond; Lyrics by Diane Warren</li>
+              <li>"Shakedown" from <em>Beverly Hills Cop II</em> – Music by Harold Faltermeyer and Keith Forsey; Lyrics by Harold Faltermeyer, Keith Forsey, and Bob Seger</li>
+              <li>"Storybook Love" from <em>The Princess Bride</em> – Music and Lyrics by Willy DeVille</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

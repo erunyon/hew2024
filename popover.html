@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>popover</title>
+<link rel="stylesheet" href="style.css">
+<style>
+[popover].styled {
+  position: fixed;
+  inset: 0;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  border: 1px solid #dadada;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow: auto;
+  color: CanvasText;
+  background-color: Canvas;
+  text-align: center;
+}
+
+/* Animation 1 */
+.animate1 {
+  [popover] {
+    opacity:0;
+    transition: all 1s;
+    transition-behavior: allow-discrete;
+  }
+  [popover]:popover-open {
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}
+
+/* Animation 2 */
+.animate2 {
+  [popover] {
+    opacity:0;
+    translate: 0 25vh;
+    /* transition: all 1s; */
+    transition-property: display opacity;
+    transition-duration: 1s;
+    transition-behavior: allow-discrete;
+  }
+  [popover]:popover-open {
+    opacity: 1;
+    translate: 0 0;
+
+    @starting-style {
+      opacity: 0;
+      translate: 0 -25vh;
+    }
+  }
+}
+
+/* Animation 3 */
+.animate3 {
+  [popover] {
+    opacity:0;
+    translate: 0 25vh;
+    /* transition: all 1s; */
+    transition-property: display opacity;
+    transition-duration: 1s;
+    transition-behavior: allow-discrete;
+  }
+  [popover]:popover-open {
+    opacity: 1;
+    translate: 0 0;
+
+    @starting-style {
+      opacity: 0;
+      translate: 0 -25vh;
+    }
+  }
+
+  [popover]::backdrop {
+    opacity: 0;
+    background-color: rgba(255, 0, 0, 0.5);
+    transition-property: overlay opacity;
+    transition-duration: 1s;
+    transition-behavior: allow-discrete;
+  }
+  [popover]:popover-open::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    [popover]:popover-open::backdrop {
+      opacity: 0;
+    }
+  }
+}
+
+.animate-positioned {
+  position:relative;
+
+  .btn-open {
+    position:absolute;
+    inset:auto 0.5rem 0.5rem auto;
+    padding:0.5rem;
+    anchor-name: --chat;
+
+    svg { width:2rem; height:2rem; }
+  }
+  [popover] {
+    position: absolute;
+    margin: 0;
+    position-area: top left;
+    opacity:0;
+    transition: all 0.5s;
+    transition-behavior: allow-discrete;
+    position-anchor: --chat;
+    /* bottom: anchor(top);
+    right: anchor(right); */
+    /* bottom: anchor(--chat_button top);
+    right: anchor(--chat_button left); */
+  }
+  [popover]:popover-open {
+    opacity: 1;
+    translate: 0 0;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-newly">popover</h1>
+      <p class="can-i-use">Can I Use: 86%</p>
+    </header>
+    <div>
+      <p>The <span class="term">&lt;popover API&gt;</span> provides developers with a standard, consistent, flexible mechanism for displaying popover content on top of other page content. Popover content can be controlled either declaratively using HTML attributes, or via JavaScript.</p>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Basic usage</h2>
+        <code>
+&lt;div id="my-popover" popover&gt;This is a popover with default browser styles.&lt;/div&gt;<br><br>
+&lt;button popovertarget="my-popover" type="button"&gt;Basic popover&lt;/button&gt;
+        </code>
+      </div>
+      <div class="align-center">
+        <button popovertarget="popover-1" type="button" class="btn btn-lg">Basic popover</button>
+        <div id="popover-1" popover>This is a popover with default browser styles.</div>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Distinct action buttons</h2>
+        <code>
+          &lt;div id="popover" popover&gt;Popover 2 content&lt;/div&gt;<br><br>
+&lt;button popovertarget="popover" popovertargetaction="show" type="button"&gt;Show popover&lt;/button&gt;<br><br>
+&lt;button popovertarget="popover" popovertargetaction="hide" type="button"&gt;Hide popover&lt;/button&gt;<br><br>
+&lt;button popovertarget="popover" popovertargetaction="toggle" type="button"&gt;Toggle popover&lt;/button&gt;
+        </code>
+      </div>
+      <div class="align-center">
+        <button popovertarget="popover-2" popovertargetaction="show" type="button" class="btn btn-lg">Show popover</button>
+        <button popovertarget="popover-2" popovertargetaction="hide" type="button" class="btn btn-lg">Hide popover</button>
+        <button popovertarget="popover-2" popovertargetaction="toggle" type="button" class="btn btn-lg">Toggle popover</button>
+        <div id="popover-2" popover>Popover 2 content</div>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Manual</h2>
+        <code>
+          &lt;button popovertarget="popover" type="button"&gt;Toggle the popover&lt;/button&gt;<br><br>
+          &lt;div id="popover" popover="manual"&gt;<br>
+            &nbsp;&nbsp;&lt;p&gt;This is an important message!&lt;/p&gt;<br>
+            &nbsp;&nbsp;&lt;button popovertarget="popover" popovertargetaction="hide" type="button"&gt;Hide popover&lt;/button&gt;<br>
+          &lt;/div&gt;
+        </code>
+      </div>
+      <div class="align-center">
+        <p>In this state:
+
+          The popover cannot be "light dismissed", although declarative show/hide/toggle buttons (as seen earlier) will still work.
+          Multiple independent popovers can be shown at a time.</p>
+        <button popovertarget="popover-3" type="button" class="btn btn-lg">Toggle the popover</button>
+        <div id="popover-3" class="styled" popover="manual">
+          <p>This is an important message!</p>
+          <button popovertarget="popover-3" popovertargetaction="hide" type="button" class="btn btn-lg">Hide popover</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-centered">
+      <div class="secondary" style="text-align:center">
+        <h2>Bonus Topic!</h2>
+        <p>The <span class="term">@starting-style</span> CSS at-rule is used to define starting values for properties set on an element that you want to transition from when an element is first displayed on a previously loaded page.</p>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Animation demo 1</h2>
+        <pre><code class="language-css">
+[popover] {
+  opacity:0;
+  transition: all 1s;
+  transition-behavior: allow-discrete;
+}
+[popover]:popover-open {
+  opacity: 1;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+</code></pre>
+      </div>
+      <div class="align-center animate1">
+        <button popovertarget="popover-4" type="button" class="btn btn-lg">Toggle the popover</button>
+        <div id="popover-4" popover class="styled">
+          <h3>Animated Popover</h3>
+          <p>This is an important message!</p>
+          <button popovertarget="popover-4" popovertargetaction="hide" type="button" class="btn btn-lg">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Animation demo 2</h2>
+        <pre><code class="language-css">
+[popover] {
+  opacity:0;
+  translate: 0 25vh;
+  transition-property: display opacity;
+  transition-duration: 1s;
+  transition-behavior: allow-discrete;
+}
+[popover]:popover-open {
+  opacity: 1;
+  translate: 0 0;
+
+  @starting-style {
+    opacity: 0;
+    translate: 0 -25vh;
+  }
+}
+</code></pre>
+      </div>
+      <div class="align-center animate2">
+        <button popovertarget="popover-5" type="button" class="btn btn-lg">Toggle the popover</button>
+        <div id="popover-5" popover class="styled">
+          <h3>Animated Popover</h3>
+          <p>This is an important message!</p>
+          <button popovertarget="popover-5" popovertargetaction="hide" type="button" class="btn btn-lg">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Animating the backdrop</h2>
+        <pre><code class="language-css">
+[popover]::backdrop {
+  opacity: 0;
+  background-color: rgba(255, 0, 0, 0.5);
+  transition-property: overlay opacity;
+  transition-duration: 1s;
+  transition-behavior: allow-discrete;
+}
+[popover]:popover-open::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  [popover]:popover-open::backdrop {
+    opacity: 0;
+  }
+}
+</code></pre>
+      </div>
+      <div class="align-center animate3">
+        <button popovertarget="popover-6" type="button" class="btn btn-lg">Toggle the popover</button>
+        <div id="popover-6" popover class="styled">
+          <h3>Animated Popover</h3>
+          <p>This is an important message!</p>
+          <button popovertarget="popover-6" popovertargetaction="hide" type="button" class="btn btn-lg">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Anchor Positioning (Chrome only)</h2>
+        <pre><code class="language-css">
+.btn-open {
+  position:absolute;
+  inset:auto 0.5rem 0.5rem auto;
+  anchor-name: --chat;
+}
+[popover] {
+  position-area: top left;
+  position-anchor: --chat;
+}
+</code></pre>
+      </div>
+      <div class="align-center animate-positioned">
+        <p><strong>WESTLEY:</strong> Why won't my arms move?</p>
+        <p>He sits there, immobile, like a ventriloquist's dummy.</p>
+        <p><strong>FEZZIK:</strong> You've been mostly dead all day.</p>
+        <p><strong>INIGO:</strong> We had Miracle Max make a pill to bring you back.</p>
+        <p><strong>WESTLEY:</strong> Who are you? — Are we enemies? Why am I on this wall? — Where's Buttercup? —</p>
+        <p><strong>INIGO:</strong> Let me explain —</p>
+        <p><em>(pauses very briefly)</em></p>
+        <p>— No, there is too much. Let me sum up.</p>
+        <p><strong>INIGO (CONT'D):</strong> Buttercup is marrying Humperdinck in a little less than half an hour, so all we have to do is get in, break up the wedding, steal the Princess, make our escape after I kill Count Rugen.</p>
+        <p><strong>WESTLEY:</strong> That doesn't leave much time for dilly dallying.</p>
+        <p>He is watching his fingers, one of which twitches now.</p>
+        <p><strong>FEZZIK:</strong> You've just wiggled your finger. That's wonderful.</p>
+        <button popovertarget="popover-7" type="button" class="btn btn-lg btn-open">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
+          </svg>
+        </button>
+        <div id="popover-7" popover class="styled">
+          <h3>Anchored Popover</h3>
+          <p>This is an important message!</p>
+          <button popovertarget="popover-7" popovertargetaction="hide" type="button" class="btn btn-close">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

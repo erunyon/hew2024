@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Nesting</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-newly">CSS Nesting</h1>
+      <p class="can-i-use">Can I Use: 87%</p>
+    </header>
+
+    <div class="grid grid-2">
+      <div class="align-center">
+        <p>The CSS nesting module allows you to write your stylesheets so that they are easier to read, more modular, and more maintainable. As you are not constantly repeating selectors, the file size can also be reduced.</p>
+      </div>
+      <div>
+<pre><code class="language-css">
+.card { background: gray;
+  a { text-decoration: none; }
+  .card-title { font-size: 1.5rem; }
+  .card-body { font-size: 1rem; }
+}
+
+/* is equivalent to */
+
+.card { background: gray; }
+.card a { text-decoration: none; }
+.card .card-title { font-size: 1.5rem; }
+.card .card-body { font-size: 1rem; }
+</code></pre>
+      </div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>Nesting @-rules</h2>
+        <ul>
+          <li>@media</li>
+          <li>@supports</li>
+          <li>@layer</li>
+          <li>@scope</li>
+          <li>@container</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Example</h2>
+<pre><code class="language-css">
+.card-grid {
+  display: grid;
+  @media (width >= 1200px) {
+    & {
+      grid-auto-flow: column;
+    }
+  }
+}
+
+/* is equivalent to */
+
+.card-grid { display: grid; }
+@media (width >= 1200px) {
+  .card-grid { grid-auto-flow: column; }
+}
+</code></pre>
+      </div>
+    </div>
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

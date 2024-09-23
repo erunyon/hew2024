@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@hover</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.hover-card {
+  position:relative;
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 1005px;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  a { color:#333; text-decoration: none; }
+  a:hover { background-color:#edf2f9;
+    .card-body { inset:auto 0 0; }
+
+  }
+  .card-body { position:absolute; inset:auto 0 0; width:100%; padding: 0.5rem; background:rgba(255,255,255,0.8);
+    h2 { margin:0;}
+    p { margin:0; }
+  }
+  @media (hover: hover) {
+    .card-body { inset:auto 0 -1.8em; }
+  }
+
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>@hover</h1>
+      <p class="can-i-use">Can I Use: 96%</p>
+    </header>
+    <div>
+      <p>The <span class="term">@hover</span> CSS media feature can be used to test whether the user's primary input mechanism can hover over elements.</p>
+    </div>
+    <div class="grid grid-2">
+      <div>
+        <pre><code class="language-css">
+.card-body {
+  position:absolute;
+  inset:auto 0 0;
+}
+a:hover {
+  .card-body { inset:auto 0 0; }
+}
+@media (hover: hover) {
+  .card-body { inset:auto 0 -1.8em; }
+}</code></pre>
+      </div>
+      <div class="align-center">
+
+        <div class="hover-card">
+          <a href="https://example.com">
+            <img class="card-image" src="images/pb-humperdink.webp" width="1000" height="663" alt="">
+            <div class="card-body">
+              <h2>Example</h2>
+              <p>Qui laborum vitae et voluptas qui beatae.</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

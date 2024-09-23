@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Range Syntax</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.intro { color:black; }
+@media (800px <= width <= 1200px) { .intro { color: blue; } }
+@media (width >= 1200px) { .intro { color: orange; } }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-newly">Range Syntax</h1>
+      <p class="can-i-use">Can I Use: 90%</p>
+    </header>
+    <div>
+      <p>The CSS media query range syntax improves legibility of media queries by making use of comparison operators: &gt;, &lt;, &gt;=, or &lt;=</p>
+    </div>
+
+    <div class="grid grid-2">
+
+      <div>
+        <h2>Old</h2>
+        <pre><code class="language-css">
+  @media (min-width: 600px) {}
+  @media (min-width: 600px) and (max-width: 800px) {}</code></pre>
+      </div>
+      <div>
+        <h2>New</h2>
+        <pre><code class="language-css">
+  @media (width &gt;= 600px) {}
+  @media (600px &lt;= width &lt;= 800px) {}</code></pre>
+      </div>
+    </div>
+
+    <h2>Example</h2>
+    <pre><code class="language-css">
+.intro { color:black; }
+@media (800px &lt;= width &lt;= 1200px) {
+  .intro { color: blue; }
+}
+@media (width &gt;= 1200px) {
+  .intro { color: orange; }
+}</code></pre>
+    <div class="intro secondary">
+      <p>The Princess Bride is a 1987 American fantasy adventure comedy film directed and co-produced by Rob Reiner and starring Cary Elwes, Mandy Patinkin, Chris Sarandon, Christopher Guest, Wallace Shawn, André the Giant, and Robin Wright. Adapted by William Goldman from his 1973 novel, it tells the story of a swashbuckling farmhand named Westley, accompanied by companions befriended along the way, who must rescue his true love Princess Buttercup from the odious Prince Humperdinck. The film preserves the novel's metafictional narrative style by presenting the story as a book being read by a grandfather to his sick grandson.</p>
+    </div>
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@property</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-newly">@property</h1>
+      <p class="can-i-use">Can I Use: 90%</p>
+    </header>
+    <div class="grid grid-2">
+      <div class="align-center">
+        <p>The <span class="term">@property</span> CSS at-rule allows developers to explicitly define CSS custom properties, allowing for property type checking and constraining, setting default values, and defining whether a custom property can inherit values or not.</p></div>
+      <div>
+        <pre><code class="language-css">
+@property --property-name {
+  syntax: "&lt;percentage&gt;";
+  inherits: false; /* default is true */
+  initial-value: 10%;
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="content-centered">
+      <h2>Available `syntax` values</h2>
+      <ul class="list-inline">
+        <li>&lt;length&gt; - values with units (10px, 10vw)</li>
+        <li>&lt;number&gt; - any numeric value</li>
+        <li>&lt;integer&gt; - whole numbers</li>
+        <li>&lt;percentage&gt; - must include the `%` (13%)</li>
+        <li>&lt;length-percentage&gt; - accepts valid &lt;length&gt; or &lt;percentage&gt; values</li>
+        <li>&lt;color&gt; - any valid color such as hex or rgb</li>
+        <li>&lt;image&gt;</li>
+        <li>&lt;url&gt;</li>
+        <li>&lt;angle&gt;</li>
+        <li>&lt;time&gt;</li>
+        <li>&lt;resolution&gt;</li>
+        <li>&lt;transform-function&gt;</li>
+        <li>&lt;custom-ident&gt;</li>
+      </ul>
+    <div>
+
+<style>
+  @property --my-color {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #00f;
+  }
+.demo {
+  ul {
+    --my-color: orange;
+  }
+  li {
+    color: white;
+    background-color: var(--my-color);
+  }
+  li:nth-child(2) {
+    /* --my-color: #f00; */
+  }
+  li:nth-child(3) {
+    /* --my-color: 200px; */
+  }
+  li:nth-child(4) {
+    /* --my-color: darkgreen; */
+  }
+}
+</style>
+    <div class="secondary">
+      <h2>Demo</h2>
+      <div class="grid grid-2">
+        <div>
+          <pre><code class="language-css">
+@property --my-color {
+  syntax: "&lt;color&gt;";
+  inherits: false;
+  initial-value: #00f;
+}
+ul {
+  --my-color: orange;
+}
+li {
+  color: white;
+  background-color: var(--my-color);
+}
+<!-- li:nth-child(2) {
+  --my-color: #f00;
+}
+li:nth-child(3) {
+  /* Not a valid color */
+  --my-color: 200px;
+}
+li:nth-child(4) {
+  --my-color: darkgreen;
+} -->
+          </code></pre>
+        </div>
+
+        <div class="demo align-center">
+          <ul>
+            <li>BUTTERCUP</li>
+            <li>VIZZINI</li>
+            <li>INIGO</li>
+            <li>FEZZIK</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

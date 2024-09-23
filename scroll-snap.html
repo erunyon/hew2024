@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scroll-snap</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.secondary { display:flex; gap:var(--grid-gap);
+  > div { width:50%; flex:0 1 auto; }
+}
+
+.snap-list { overflow:auto; height:300px; padding:0; margin:0; list-style-type:none; outline:1px solid #000;
+  &.snap-vertical { scroll-snap-type:block proximity;
+    li { height:300px; }
+  }
+  &.snap-horizontal { overflow-x:scroll; scroll-snap-type:inline mandatory; display:flex;
+    li { width:400px; }
+  }
+  li { scroll-snap-align:start; flex:1 0 auto; margin:0; align-content:center; text-align:center; color:#fff;
+    &:nth-of-type(1) { background-color:#478559; }
+    &:nth-of-type(2) { background-color:#161748; }
+    &:nth-of-type(3) { background-color:#f95d9b; }
+    &:nth-of-type(4) { background-color:#39a0ca; }
+    &:nth-of-type(5) { background-color:#5746a0; }
+  }
+}
+
+/* Story Slider */
+.hidden { display: none !important; }
+.btn { display: inline-block; padding: 0.8em 1em; border: 3px solid transparent; border-radius: 0.6em; line-height: 1.5em; text-decoration: none; transition: all 125ms ease-in-out; font-size: 1em; }
+.icon { display: inline-block; width: 1em; height: 1em; fill: currentColor; }
+.slider { position:relative; margin:2em 0 3em; font-size:16px; background:#eee; }
+.slides { display:flex; grid-gap:2.25em; align-items:center; scroll-behavior:smooth; overflow-x:scroll; overflow-y:hidden; scroll-snap-type:x mandatory; }
+  .slider .cover { display:flex; flex-direction:column; width:100vw; max-width:650px; padding:2em 2.5em; color:#fff; background:#0c2340 url('images/slider-bg.jpg') center top / cover no-repeat; }
+  .slider .cover .body p { flex:1; font-size:1.15em; line-height:1.65; color:#eee; }
+  .slider .cover .body a,
+  .slider .cover .body a:link,
+  .slider .cover .body a:hover,
+  .slider .cover .body a:visited { color:#ccc; }
+  .slider .cover .title { margin:0 0 1.5em; font-size:2em; line-height:1.1; color:#fff; }
+  .slider .cover .subtitle { font-size:0.9em; letter-spacing:1px; margin-bottom:0.5em; text-transform:uppercase; }
+  .slider .cover .drag-cta { display:flex; gap:1em; align-items:center; color:#fff; font-size:1.1em; line-height:1.6; background:none; border:none; text-align:right; }
+  .slider .cover .drag-cta .icon { color:#ae9142; }
+  .slider .cover .drag-cta .cta { width:100%; }
+    .slider .cover .drag-cta:hover {cursor:pointer;}
+
+  .slider .slide { flex:1 0 auto; scroll-snap-align:start; }
+  .slider .slide img {max-height:100%; }
+  .slider .slide .entry-wrapper p { padding:0 1em; font-size:1em; }
+  .slider .slide.image { max-width:880px; width:100vw; }
+  .slider .slide.image .entry-wrapper { height:100%; width:100%; }
+  .slider .slide.image .entry-wrapper .image-wrapper { height:100%; }
+  .slider .slide.text-above-image,
+  .slider .slide.text-below-image { max-width:455px; overflow:hidden; width:100vw;}
+  .slider .slide.text-above-image .entry-wrapper,
+  .slider .slide.text-below-image .entry-wrapper { display:flex; height:100%; }
+  .slider .slide.text-above-image .entry-wrapper img,
+  .slider .slide.text-below-image .entry-wrapper img { width:533px; }
+  .slider .slide.text-above-image .entry-wrapper { flex-direction:column; }
+  .slider .slide.text-below-image .entry-wrapper { flex-direction:column-reverse; }
+  .slider .slide.text-below-image .entry-wrapper p { flex:1; }
+
+  .slider .btn { opacity:0; position:absolute; top:50%; z-index:1; transform:translateY(-50%); height:55px; width:55px; border-radius:100%; transition:opacity 0.4s; background-color:rgba(12,35,64,0.75); background-position:50% 50%; background-repeat:no-repeat;}
+  @media (hover: hover) {
+    .slider .btn:hover {cursor:pointer;}
+    .slider:hover .btn {opacity:1;}
+    .slider .btn.slide-prev,
+    .slider .btn.slide-next { display:none; }
+    @media (scripting: enabled) {
+      .slider .btn.slide-prev,
+      .slider .btn.slide-next { display:block; }
+    }
+    .slider .btn.slide-next {right:10px; background-image:url('data:image/svg+xml;charset=utf-8,<svg width="18" height="18" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><title>Shape</title><path d="M25.557 14.7L13.818 2.961 16.8 0l16.8 16.8-16.8 16.8-2.961-2.961L25.557 18.9H0v-4.2z" fill="%23FFF" fill-rule="evenodd"/></svg>');}
+    .slider .btn.slide-prev {left:10px;background-image:url('data:image/svg+xml;charset=utf-8,<svg width="18" height="18" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><title>Shape</title><path d="M33.6 14.7H8.043L19.782 2.961 16.8 0 0 16.8l16.8 16.8 2.961-2.961L8.043 18.9H33.6z" fill="%23FFF" fill-rule="evenodd"/></svg>');}
+  }
+
+  @media only screen and (min-width:48em) {
+    .slider { margin:5em 0 6em;}
+    .slider .cover { padding:6.5em 6em; }
+    .slider .cover .title { font-size:2.65em; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>scroll-snap</h1>
+      <p class="can-i-use">Can I Use: 94%</p>
+    </header>
+    <p>The <span class="term">CSS Scroll Snap</span> feature allows web developers to create well-controlled scroll experiences by declaring scroll snapping positions.</p>
+    <div class="grid grid-2">
+      <div class="align-center">
+<pre><code>
+&lt;ul class="snap-list snap-vertical"&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+  &lt;li&gt;Item 4&lt;/li&gt;
+  &lt;li&gt;Item 5&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+      </div>
+      <div>
+<pre><code class="language-css">
+.snap-list {
+  &.snap-vertical {
+    scroll-snap-type:block proximity;
+  }
+  &.snap-horizontal {
+    scroll-snap-type:inline mandatory;
+  }
+  li { scroll-snap-align:start; }
+}
+</code></pre>
+      </div>
+    </div>
+
+    <div class="secondary">
+      <div>
+        <h2>Vertical Snap</h2>
+        <ul class="snap-list snap-vertical">
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+          <li>Item 4</li>
+          <li>Item 5</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Horizontal Snap</h2>
+        <ul class="snap-list snap-horizontal">
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+          <li>Item 4</li>
+          <li>Item 5</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="slider">
+      <div class="slides">
+        <div class="slide cover">
+        <div class="animate active active-once">
+          <p class="subtitle">Environmental Racism</p>
+          <h2 class="title">The Story of Cancer Alley</h2>
+          <div class="body"><p>“Cancer Alley” is an 85-mile stretch of the Mississippi River that is home to more than 150 petrochemical factories and refineries. <a href="https://projects.propublica.org/toxmap/">According to one analysis</a>, the cancer risk in this region can be as high as 1 in 210, or 47 times the EPA’s acceptable risk limit.</p>
+          <p>The region was once known as “Plantation Country” for its high concentration of sprawling fields and farms where enslaved people were forced into labor to provide the backbone of a booming sugar industry in the 1800s.</p></div></div>
+          <button type="button" class="slide-next drag-cta">
+            <span class="cta">Swipe to explore</span>
+            <svg id="mi-arrow-forward-no-bg" class="icon" viewBox="0 0 32 32" width="100%" height="100%">
+              <polygon points="16,0 13.2,2.8 24.3,14 0,14 0,18 24.3,18 13.2,29.2 16,32 32,16"></polygon>
+            </svg>
+          </button>
+        </div>
+        <div class="slide image entry-1">
+         <div class="image-wrapper">
+              <object data="images/slider-cancer_alley-map.svg" type="image/svg+xml" aria-label="A map highlighting the Mississippi River between Baton Rouge and New Orleans."></object>
+            </div>
+        </div>
+        <div class="slide text-above-image entry-2">
+          <div class="entry-wrapper">
+            <p>In a 2021 statement, the United Nations issued a statement noting the connection between past and present, calling for an end to the “environmental racism” that plagues the largely African-American inhabitants of the corridor today.</p>
+            <div class="image-wrapper">
+              <figure>
+                <img src="images/slider-small_cemetery-800.jpg" alt="Scattered crosses and stones in a small cemetery." width="800" height="533">
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="slide text-below-image entry-3">
+          <div class="entry-wrapper">
+            <p>Thirty-two factories and refineries are in St. James Parish alone, and a dozen are in its 5th district — within a few miles of Sharon Lavigne’s home.</p>
+            <p>In 2017, the plants released more than 1.6 million pounds of toxic chemicals into the air of St. James Parish.</p>
+            <div class="image-wrapper">
+              <figure>
+                <img src="images/slider-death_row_signs-800.jpg" alt="Two yard signs in a neighboorhood that say 'RISE St. James' and 'We live on death row - No Formosa'." width="800" height="533">
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="slide image entry-4">
+          <div class="entry-wrapper">
+            <figure>
+            <img src="images/slider-cancer_alley-800.jpg" width="800" height="533" alt="Dark black smoke coming out of an industrail chemical plant against clear blue skies.">
+          </figure>
+          </div>
+        </div>
+      </div><!-- .slider -->
+      <button type="button" aria-label="previous" id="previous" class="btn btn-prev slide-prev hidden"><span class="hidden">Previous</span></button>
+      <button type="button" aria-label="next" id="next" class="btn btn-next slide-next"><span class="hidden">Next</span></button>
+    </div>
+
+  </div><!-- .wrapper -->
+<script>
+ document.addEventListener('DOMContentLoaded', function(){
+  var sliders = document.querySelectorAll('.slider');
+  [].forEach.call(sliders, function(slider){
+    var slider = slider;
+    var slides = slider.querySelector('.slides');
+    var slide_items = slides.querySelectorAll('.slide');
+    var item_size = slides.scrollWidth / slide_items.length;
+    var first_item = slide_items[0];
+    var last_item = slide_items[slide_items.length - 1];
+    var btn_prev = slider.querySelector('.btn-prev.slide-prev');
+    var btn_next = slider.querySelector('.btn-next.slide-next');
+
+    // Show/Hide the slider buttons
+    slides.addEventListener('scroll', function(){
+      (slides.scrollLeft < 100) ? btn_prev.classList.add('hidden') : btn_prev.classList.remove('hidden');
+      (slides.scrollLeft > (slides.scrollWidth - slides.clientWidth - 10)) ? btn_next.classList.add('hidden') : btn_next.classList.remove('hidden');
+    });
+
+    // Slider buttons listeners
+    slider.querySelectorAll('.slide-next').forEach(function(item, i){
+      item.addEventListener('click', function(target){
+        if(item.classList.contains('drag-cta')) slides.scrollBy(first_item.clientWidth, 0);
+        else slides.scrollBy(item_size, 0);
+        // slides.scrollBy(item_size, 0);
+      });
+    });
+    slider.querySelector('.slide-prev').addEventListener('click', function(){
+      left = (slides.scrollLeft < first_item.clientWidth) ? left = slides.scrollLeft : item_size;
+      slides.scrollBy(-left, 0);
+    });
+  });
+});
+</script>
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

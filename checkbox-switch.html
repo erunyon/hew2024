@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkbox Switch</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header><h1>Checkbox Switch (Safari only)</h1></header>
+    <p>The <span class="term">switch</span> attribute, when placed on a checkbox input, changes the visual representation of the input to a Apple style switch input.</p>
+    <div class="grid grid-2">
+      <div class="align-center">
+        <pre><code>
+  &lt;input type="checkbox" switch&gt;
+  &lt;input type="checkbox" switch checked&gt;
+  </code></pre>
+      </div>
+      <div class="align-center">
+        <form>
+          <div>
+            <input id="one" type="checkbox" name="one">
+            <label for="one">Standard checkbox</label>
+          </div>
+
+          <div>
+            <input id="two" type="checkbox" name="two" checked>
+            <label for="two">Standard checkbox - checked</label>
+          </div>
+
+          <div>
+            <input id="three" type="checkbox" name="three" switch>
+            <label for="three">Switch checkbox</label>
+          </div>
+
+          <div>
+            <input id="four" type="checkbox" name="four" switch checked>
+            <label for="four">Switch checkbox - checked</label>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <hr>
+
+    <div>
+      <h2>Safari Screenshot</h2>
+      <img src="images/switch.webp" width="800" height="375" alt="Screenshot showing variations on the `checkbox` element.">
+    </div>
+  </div><!-- .wrapper -->
+  <script src="javascript/highlight.min.js"></script>
+</body>
+</html>

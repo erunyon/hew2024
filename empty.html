@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>:empty</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.demo1 {
+  :empty { background-color: lightblue; }
+}
+
+.demo2 {
+  .list-container {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+  }
+  .list-container:has(ul:empty){
+    &::after {
+      content: "This list is empty";
+      color: red;
+    }
+  }
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>:empty</h1>
+      <p class="can-i-use">Can I Use: 96%</p>
+    </header>
+    <div class="grid grid-2 demo1">
+      <div>
+        <p>The <span class="term">:empty</span> pseudo-class represents any element that has no children. Only element nodes and text (including whitespace) are considered. Comments do not affect whether an element is considered empty or not.</p>
+        <p>This div is considered empty:</p>
+        <pre><code>&lt;div&gt;&lt;/div&gt;</code></pre>
+        <p>While this div is not:</p>
+        <pre><code>&lt;div&gt; &lt;/div&gt;</code></pre>
+      </div>
+      <div>
+<pre><code class="language-css">
+:empty { background-color:lightblue; }
+&lt;ul&gt;
+  &lt;li&gt; &lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+  &lt;li&gt;Not empty&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<code>
+<ul>
+  <li> </li>
+  <li></li>
+  <li>Not empty</li>
+</ul>
+</code>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Demo</h2>
+    <div class="grid grid-2 demo2">
+      <div>
+        <pre><code>
+&lt;div class="list-container"&gt;
+  &lt;h3&gt;A list with items&lt;/h3&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;li&gt;Item 3&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class="list-container"&gt;
+  &lt;h3&gt;A list with no items&lt;/h3&gt;
+  &lt;ul&gt;&lt;/ul&gt;
+&lt;/div&gt;
+        </code></pre>
+
+<pre><code class="language-css">
+.list-container:has(ul:empty){
+  &::after {
+    content: "This list is empty";
+    color: red;
+  }
+}
+</code></pre>
+
+      </div>
+
+      <div class="align-center">
+        <div class="list-container">
+          <h3>A list with items</h3>
+          <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ul>
+        </div>
+
+        <div class="list-container">
+          <h3>A list with no items</h3>
+          <ul></ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- .wrapper -->
+  <script src="javascript/highlight.min.js"></script>
+</body>
+</html>

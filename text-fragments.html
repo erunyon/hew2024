@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text Fragments</title>
+<link rel="stylesheet" href="style.css">
+<style>
+::target-text {
+  background-color: #d39f10;
+  color: white;
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-limited">Text Fragments</h1>
+      <p class="can-i-use">Can I Use: 89%</p>
+    </header>
+    <div>
+      <p><span class="term">Text Fragments</span> allow linking directly to a specific portion of text in a web document, without requiring the author to annotate it with an ID, using particular syntax in the URL fragment.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <img src="images/fragment-search.webp" alt="Fragment search" width="1200" height="740">
+      <img src="images/fragment-result.webp" alt="Fragment result" width="1200" height="740">
+    </div>
+
+    <hr>
+
+    <div class="grid grid-2">
+      <div>
+        <pre><code>https://example.com#:~:text=[prefix-,]textStart[,textEnd][,-suffix]</code></pre>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="secondary grid grid-2">
+      <div>
+        <h2>How to acquire a fragment link</h2>
+        <ol>
+          <li>Hightlight the desired text in Chrome</li>
+          <li>Right-click and select "Copy link to highlight"</li>
+        </ol>
+      </div>
+      <div class="align-center">
+        <h2>Result</h2>
+        <p><a href="./text-fragments.html#:~:text=What%20is%20this%3F%20Are%20you%20trying%20to%20trick%20me%3F%20%2D%2D%20Where%27s%20the%20sports%3F%20%2D%2D%20Is%20this%20a%20kissing%20book%3F">Link to a fragment</a></p>
+      </div>
+    </div>
+    <hr>
+    <div class="grid grid-2">
+      <div>
+        <h2>Custom Styles</h2>
+        <p>Custom styles can be applied to the <span class="term">::target-text</span> pseudo-element to highlight the selected text. Currently in Chrome and Safari TP.</p>
+      </div>
+      <div>
+      <pre><code class="language-css">::target-text {
+  background-color: #d39f10;
+  color: white;
+}</code></pre>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="content-centered">
+      <p><strong>BUTTERCUP:</strong> Farm boy. Polish my horse's saddle. I want to see my face shining in it by morning.</p>
+      <p><strong>WESTLEY:</strong> <em>(quietly, watching her)</em> As you wish.</p>
+      <p>Westley is perhaps half a dozen years older than Buttercup. And maybe as handsome as she is beautiful. He gazes at her as she walks away.</p>
+      <p><strong>GRANDFATHER:</strong> <em>(off-screen)</em> "As you wish" was all he ever said to her.</p>
+      <p><em>DISSOLVE TO:</em></p>
+      <p>WESTLEY, outside, chopping wood. Buttercup drops two large buckets near him.</p>
+      <p><strong>BUTTERCUP:</strong> Farm Boy. Fill these with water -- <em>(a beat)</em> --please.</p>
+      <p><strong>WESTLEY:</strong> As you wish.</p>
+      <p>She leaves; his eyes stay on her. She stops, turns -- he manages to look away as now her eyes stay on him.</p>
+      <p><strong>GRANDFATHER:</strong> <em>(off-screen)</em> That day, she was amazed to discover that when he was saying, "As you wish," what he meant was, "I love you."</p>
+      <p><em>DISSOLVE TO:</em></p>
+      <p><strong>BUTTERCUP IN THE KITCHEN - DUSK</strong></p>
+      <p>Westley enters with an armload of firewood.</p>
+      <p><strong>GRANDFATHER:</strong> <em>(off-screen)</em> And even more amazing was the day she realized she truly loved him back.</p>
+      <p><strong>BUTTERCUP:</strong> <em>(pointing to a pitcher that she could reach herself)</em> Farm Boy, fetch me that pitcher.</p>
+      <p>He gets it, hands it to her; they are standing very close to each other gazing into each other's eyes.</p>
+      <p><strong>WESTLEY:</strong> As you wish.</p>
+      <p>Now he turns, moves outside.</p>
+      <p><em>DISSOLVE TO:</em></p>
+      <p>WESTLEY AND BUTTERCUP, outside his tiny hovel in the red glow of sunset. They are locked in a passionate kiss.</p>
+      <p><strong>THE KID:</strong> <em>(off-screen)</em> -hold it, hold it-</p>
+      <p><em>CUT TO:</em></p>
+      <p><strong>THE KID'S ROOM</strong></p>
+      <p><strong>THE KID:</strong> What is this? Are you trying to trick me? -- Where's the sports? -- Is this a kissing book?</p>
+      <p><strong>GRANDFATHER:</strong> -- wait, just wait --</p>
+      <p><strong>THE KID:</strong> -- well, when does it get good?</p>
+      <p><strong>GRANDFATHER:</strong> Keep your shirt on. Let me read. <em>(reading again)</em> Westley had no money for marriage. So he packed his few belongings and left the farm to seek his fortune across the sea.</p>
+    </div>
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

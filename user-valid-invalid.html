@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>:user-valid/:user-invalid</title>
+<link rel="stylesheet" href="style.css">
+<style>
+label { display:block; }
+input, textarea { field-sizing:content; min-width:200px; margin-bottom:1rem; font-size:1rem; }
+
+.valid {
+  input:valid { border: 2px solid green; }
+  label:has(+ input:valid)::after { display:inline-block; content: "✓"; margin-left:0.4rem; color: green;}
+  input:invalid { border: 2px solid red; }
+  label:has(+ input:invalid)::after { display:inline-block; content: "✖"; margin-left:0.4rem; color: red; }
+}
+
+.user-valid {
+  input:user-valid { border: 2px solid green; }
+  label:has(+ input:user-valid)::after { display:inline-block; content: "✓"; margin-left:0.4rem; color: green;}
+  input:user-invalid { border: 2px solid red; }
+  label:has(+ input:user-invalid)::after { display:inline-block; content: "✖"; margin-left:0.4rem; color: red; }
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-newly">:user-valid/:user-invalid</h1>
+      <p class="can-i-use">Can I Use: 87%</p>
+    </header>
+    <p>The <span class="term">:user-valid/user-invalid</span> pseudo-classes represents any validated form element whose value validates correctly based on its validation constraints. However, unlike :valid it only matches once the user has interacted with it.</p>
+    <div class="grid grid-2">
+      <div class="align-center">
+<pre><code class="language-css">
+input:user-valid {
+  border:2px solid green;
+}
+input:user-invalid {
+  border:2px solid red;
+}
+
+label:has(+ input:user-valid)::after
+label:has(+ input:user-invalid)::after {
+  display:inline-block; margin-left:0.4rem;
+}
+label:has(+ input:user-valid)::after {
+  content:"✓";
+  color:green;
+}
+label:has(+ input:user-invalid)::after {
+  content:"✖";
+  color:red;
+}</code></pre>
+      </div>
+      <div class="align-center">
+        <h2>:valid</h2>
+        <form class="valid">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required>
+          <span></span>
+        </form>
+        <h2>:user-valid</h2>
+        <form class="user-valid">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required>
+          <span></span>
+        </form>
+      </div>
+    </div>
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

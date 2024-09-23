@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>:where()</title>
+<link rel="stylesheet" href="style.css">
+<style>
+li:where(:not(.foo, .bar)) { background-color: lightblue; }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-widely">:where()</h1>
+      <p class="can-i-use">Can I Use: 93%</p>
+    </header>
+    <div class="grid grid-2">
+      <div class="align-center">
+        <p>The <span class="term">:where()</span> pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list.</p>
+        <blockquote>The difference between :where() and :is() is that :where() always has 0 specificity, whereas :is() takes on the specificity of the most specific selector in its arguments.</blockquote>
+      </div>
+      <div>
+<pre><code class="language-css">
+li:where(:not(.foo, .bar)) {
+  background-color: lightblue;
+}
+
+&lt;ul&gt;
+  &lt;li class="foo"&gt;Foo&lt;/li&gt;
+  &lt;li class="bar"&gt;Bar&lt;/li&gt;
+  &lt;li class="baz"&gt;Baz&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<code>
+<ul>
+  <li class="foo">Foo</li>
+  <li class="bar">Bar</li>
+  <li class="baz">Baz</li>
+</ul>
+</code>
+      </div>
+    </div>
+  </div><!-- .wrapper -->
+  <script src="javascript/highlight.min.js"></script>
+</body>
+</html>

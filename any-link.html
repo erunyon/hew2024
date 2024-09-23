@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>:any-link</title>
+<link rel="stylesheet" href="style.css">
+<style>
+a, a:link, a:visited { color:red; }
+:any-link { background-color: lightblue; }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>:any-link</h1>
+      <p class="can-i-use">Can I Use: 96%</p>
+    </header>
+    <div class="grid grid-2">
+      <div class="align-center">
+        <p>The <span class="term">:any-link</span> CSS pseudo-class selector represents an element that acts as the source anchor of a hyperlink, independent of whether it has been visited. In other words, it matches every <span class="term">&lt;a&gt;</span> <strong>that has an href attribute</strong>. </p>
+      </div>
+      <div>
+<pre><code class="language-css">
+a, a:link, a:visited { color:red; }
+:any-link { background-color:lightblue; }
+</code></pre>
+<pre><code>
+&lt;a href="https://www.highedweb.org/"&gt;HighEdWeb&lt;/a&gt;
+&lt;a href="#top"&gt;Back to top&lt;/a&gt;
+&lt;a name="name"&gt;Name&lt;/a&gt;
+</code></pre>
+<code>
+<a href="https://www.highedweb.org/">HighEdWeb</a> |
+<a href="#top">Back to top</a> |
+<a name="name">Name</a>
+</code>
+      </div>
+    </div>
+  </div><!-- .wrapper -->
+  <script src="javascript/highlight.min.js"></script>
+</body>
+</html>

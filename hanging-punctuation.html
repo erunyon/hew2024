@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hanging-punctuation</title>
+<link rel="stylesheet" href="style.css">
+<style>
+blockquote { font-style:normal; }
+.allow-hanging-first { hanging-punctuation:first; }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>hanging-punctuation (Safari only)</h1>
+      <p class="can-i-use">Can I Use: 18%</p>
+    </header>
+    <div class="grid grid-2">
+      <div class="align-center">
+        <p>The <span class="term">hanging-punctuation</span> CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box.</p>
+      </div>
+      <div>
+        <pre><code class="language-css">
+.blockquote {
+  hanging-punctuation: first;
+}</code></pre>
+<blockquote>
+  <p>&ldquo;The hanging-punctuation property is a great way to add a little extra style to your blockquotes.&rdquo;;</p>
+</blockquote>
+<blockquote class="allow-hanging-first">
+  <p>&ldquo;The hanging-punctuation property is a great way to add a little extra style to your blockquotes.&rdquo;</p>
+</blockquote>
+      </div>
+    </div>
+
+    <div>
+      <h2>Safari Screenshot</h2>
+      <img src="images/hanging-punctuation.webp" width="1200" height="334" alt="Screenshot of three blockquotes. The second is displaying the functionality of `hanging-punctuation`.">
+    </div>
+</div>
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

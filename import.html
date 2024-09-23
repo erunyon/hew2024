@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@import</title>
+<link rel="stylesheet" href="style.css">
+<style>
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-limited">@import</h1>
+      <p class="can-i-use">Can I Use: 96%</p>
+    </header>
+    <div class="grid grid-2">
+      <div class="align-center">
+        <p>The <span class="term">@import</span> is used to import style rules from other valid stylesheets. An <span class="term">@import</span> rule <strong>must be defined at the top of the stylesheet</strong>, before any other at-rule (except @charset and @layer) and style declarations, or it will be ignored.</p>
+      </div>
+      <div>
+<h2>It's been around&hellip;</h2>
+<pre><code class="language-css">
+@import url("dead-trees.css") print;
+</code></pre>
+<h2>But now it can do this&hellip;</h2>
+<pre><code class="language-css">
+@import url("screen.css") screen and (min-width: 800px);
+
+@import url("grid.css") supports(display: grid)
+        screen and (width >= 400px);
+
+@import url("flex.css") supports((not (display: grid))
+        and (display: flex)) screen and (width >= 400px);
+
+@import url(cards.css) layer(components);
+@import url(headings.css) layer(headings);
+</code></pre>
+      </div>
+    </div>
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>

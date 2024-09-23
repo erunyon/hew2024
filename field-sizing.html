@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>field-sizing</title>
+<link rel="stylesheet" href="style.css">
+<style>
+label { display:block; }
+input, textarea { field-sizing:content; min-width:200px; margin-bottom:1rem; font-size:1rem; }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="wps wps-limited">field-sizing (Chrome only)</h1>
+      <p class="can-i-use">Can I Use: 67%</p>
+    </header>
+    <p>The <span class="term">field-sizing</span> property enables you to control the sizing behavior of elements that are given a default preferred size, such as form control elements. This property enables you to override the default sizing behavior, allowing form controls to adjust in size to fit their contents.</p>
+    <div class="grid grid-2">
+      <div class="align-center">
+<pre><code class="language-css">
+input, textarea {
+  field-sizing:content;
+}
+</code></pre>
+      </div>
+      <div>
+        <form>
+          <label for="name">Name</label>
+          <input id="name" type="text" name="name">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email">
+          <label for="comment">Comment</label>
+          <textarea id="comment" name="comment"></textarea>
+        </form>
+      </div>
+    </div>
+  </div><!-- .wrapper -->
+  <script src="javascript/highlight.min.js"></script>
+</body>
+</html>

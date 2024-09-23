@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cascade Layers Demo 3</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header><h1 class="wps wps-newly">Cascade Layers Demo 3</h1></header>
+
+    <style>
+    @layer base, typography, components;
+    .demo {
+      @layer base {
+        p { color:#333; }
+      }
+      @layer components {
+        .indigo { color:indigo; }
+      }
+      @layer typography {
+        p { color:orange; }
+      }
+    }
+    </style>
+    <h2>Layer Order Matters</h2>
+    <div class="grid grid-2 demo">
+      <div>
+        <code>
+          &lt;p class="indigo"&gt;&lt;strong&gt;INIGO:&lt;/strong&gt; Hello there.&lt;/p&gt;<br><br>
+          &lt;p&gt;&lt;strong&gt;MAN IN BLACK:&lt;/strong&gt; &hellip;&lt;/p&gt;<br><br>
+          &lt;p class="indigo"&gt;&lt;strong&gt;INIGO:&lt;/strong&gt; Sorry.&lt;/p&gt;<br><br>
+          &lt;p&gt;&lt;strong&gt;MAN IN BLACK:&lt;/strong&gt; Thank you.&lt;/p&gt;
+        </code>
+        <pre><code class="language-css">
+@layer base, typography, components;
+
+@layer base {
+  p { color:#333; }
+}
+@layer components {
+  .indigo { color:indigo; }
+}
+@layer typography {
+  p { color:orange; }
+}
+        </code></pre>
+      </div>
+      <div class="align-center">
+        <p><strong>INIGO:</strong> Hello there.</p>
+        <p class="indigo"><strong>MAN IN BLACK:</strong> Look, I don't mean to be rude, but this is not as easy as it looks. So I'd appreciate it if you wouldn't distract me.</p>
+        <p><strong>INIGO:</strong> Sorry.</p>
+        <p class="indigo"><strong>MAN IN BLACK:</strong> Thank you.</p>
+      </div>
+    </div>
+
+    <p><a class="btn btn-more" href="cascade-layers-4.html">Demo 4: important!</a></p>
+
+  </div><!-- .wrapper -->
+<script src="javascript/highlight.min.js"></script>
+</body>
+</html>
